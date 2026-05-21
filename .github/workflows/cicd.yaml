@@ -51,7 +51,7 @@ jobs:
       uses: docker/build-push-action@v4 
       with:
         context: ./cicd-docker-simple_proj
-        file: ./cicd-docker-simple_proj/DockerFile
+        file: ./cicd-docker-simple_proj/Dockerfile
         push: true
         tags: "${{ secrets.DOCKERHUB_USERNAME }}/cicd-docker-simple_proj:latest"
 

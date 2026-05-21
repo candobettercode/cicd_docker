@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python 3.11      
       uses: actions/setup-python@v4
       with:
-        python-version: 3.11
+        python-version: "3.11"
 
     - name: Install dependencies
       run: |
@@ -54,6 +54,10 @@ jobs:
         file: ./cicd-docker-simple_proj/Dockerfile
         push: true
         tags: "${{ secrets.DOCKERHUB_USERNAME }}/cicd-docker-simple_proj:latest"
+
+
+
+
 
     - name: Image digest
       run: echo "Image digest: ${{ steps.docker_build.outputs.digest }}"

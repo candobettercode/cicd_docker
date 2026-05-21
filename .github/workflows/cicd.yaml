@@ -55,10 +55,6 @@ jobs:
         push: true
         tags: "${{ secrets.DOCKERHUB_USERNAME }}/cicd-docker-simple_proj:latest"
 
-
-
-
-
-    - name: Image digest
-      run: echo "Image digest: ${{ steps.docker_build.outputs.digest }}"
+    #- name: Image digest
+    #  run: echo "Image digest: ${{ steps.docker_build.outputs.digest }}"
 

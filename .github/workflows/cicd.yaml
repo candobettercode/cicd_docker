@@ -25,8 +25,9 @@ jobs:
         pip install -r cicd-docker-simple_proj/requirements.txt
 
     - name: Run tests
+      working-directory: cicd-docker-simple_proj
       run: |
-        pytest  
+        pytest
 
   build-and-publish:
     needs: build-and-test
@@ -46,14 +47,14 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push Docker image
+      id: docker_build
       uses: docker/build-push-action@v4 
       with:
-        context: .
-        file: cicd-docker-simple_proj/Dockerfile
+        context: ./cicd-docker-simple_proj
+        file: ./cicd-docker-simple_proj/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/cicd-docker-simple_proj:latest
 
     - name: Image digest
-      run: echo "Image digest: ${{ steps.build-and-publish.outputs.digest }}"
+      run: echo "Image digest: ${{ steps.docker_build.outputs.digest }}"
 
-      
